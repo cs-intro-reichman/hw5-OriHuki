@@ -111,14 +111,41 @@ public class Scrabble {
 			String input = in.readString();
 			//// Replace the following break statement with code
 			//// that completes the hand playing loop
-			break;
+		
+			// finish playing hand
+		if (input.equals(".")) 
+		break;
+
+		// checks if word is subset of hand
+		if (MyString.subsetOf(input, hand)) {
+			
+			// checks if word in the dictionary
+			if(isWordInDictionary(input) && !input.equals("")){
+
+				hand = MyString.remove(hand, input);
+				score += wordScore(input);
+
+				System.out.println( input + " earned " + wordScore(input) + " points. Score: " + score + " points");
+				System.out.println();
+			}
+			
+			else{
+				System.out.println("No such word in the dictionary. Try again.");
+				System.out.println();
+			}
 		}
-		if (hand.length() == 0) {
-	        System.out.println("Ran out of letters. Total score: " + score + " points");
-		} else {
-			System.out.println("End of hand. Total score: " + score + " points");
+		
+		else{
+			System.out.println("Invalid word. Try again.");
 		}
 	}
+		if (hand.length() == 0) {
+		System.out.println("Ran out of letters. Total score: " + score + " points");
+		} else {
+		System.out.println("End of hand. Total score: " + score + " points");
+		}
+}
+
 
 	// Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand, or 'e'
 	// to end the game. If the user enters any other input, writes an error message.
