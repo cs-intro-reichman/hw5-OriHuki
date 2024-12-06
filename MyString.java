@@ -11,7 +11,7 @@ public class MyString {
         System.out.println(subsetOf("sapopop","space"));
         System.out.println(spacedString("silent"));
         System.out.println(randomStringOfLetters(3));
-        System.out.println(remove("meet", "committeme"));
+        System.out.println(remove("meet", "committee"));
         //// Put your other tests here.
     }
 
@@ -67,7 +67,7 @@ public class MyString {
         //// Replace the following statement with your code
         String newString = "";
         for (int i = 0; i < str.length(); i++) {
-            newString = newString + str.charAt(i) + " "; }
+            newString = " " + newString + str.charAt(i); }
         return newString;
     }
     /**
@@ -103,28 +103,13 @@ public class MyString {
 
     public static String remove(String str1, String str2) {
         //// Replace the following statement with your code
-        String newString = "";
-        for (int i = 0; i < str2.length(); i++) {
-            char a = str2.charAt(i);
-            
-            boolean found = false;
-
-            for (int j = 0; j < str1.length(); j++) {
-                char b = str1.charAt(j);
-
-                if (a == b) { // if a is in b
-                    str1 = str1.substring(0, j) + str1.substring(j + 1); // take out b from a 
-                    found = true;
-                    break; //get out from the loop
-                    }
+            int index = 0;
+            for(int i = 0 ; i < str2.length() ; i ++) {
+                index = str1.indexOf(str2.charAt(i));
+                str1 = str1.substring(0, index) + str1.substring(index + 1, str1.length());
             }
-            
-            if (!found) { // if b isnt in a
-                newString += a; // add a to new string
-            }
+            return str1;
         }
-        return newString;
-    }
 
     /**
      * Returns a string consisting of the given string, with the given
